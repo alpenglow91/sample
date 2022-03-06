@@ -1,0 +1,1039 @@
+@charset "utf-8";
+
+$breakpoints: (
+  //キー 値
+  "sp": "screen and (max-width: 767px)",
+  "pc": "screen and (min-width: 768px)"
+) !default;
+
+//メディアクエリ用のmixinを定義。デフォ値はsp。
+@mixin mq($breakpoint: sp) {
+  //map-get(マップ型変数, キー)で値を取得
+  @media #{map-get($breakpoints, $breakpoint)} {
+    //この中をカスタムできる
+    @content;
+  }
+}
+
+/*==============================================================================
+# ColorSetting
+==============================================================================*/
+$primary-color: #00850b;
+$font-color: #333;
+
+/*==============================================================================
+# CommonStyle
+==============================================================================*/
+//スマホ表示
+@include mq("sp") {
+  //pc表示のときだけ表示させる
+  .is-pc {
+    display: none;
+  }
+}
+// デスクトップ表示
+@include mq("pc") {
+  //min-withが768px(PC表示)のとき[is-sp]というクラスがあったら非表示にする
+  .is-sp {
+    display: none;
+  }
+}
+
+body {
+  font-size: 16px;
+  color: $font-color;
+  font-family: "ヒラギノ明朝 ProN", serif;
+  line-height: (27px / 16px);
+}
+
+img {
+  width: 100%;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: content-box;
+
+  @include mq("sp") {
+    padding: 0 15px;
+  }
+}
+
+/* 
+header
+==============================================================================*/
+
+.header {
+  background: #fff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+
+  .drawer-hamburger {
+    .drawer--right & {
+      right: 3px;
+    }
+  }
+
+  //hamburgerメニューのバーの色を変える
+  .drawer-hamburger-icon {
+    //drawer-openクラスが先頭についているdrawer-hamburger-iconに対しての処理
+    .drawer-open & {
+      background-color: transparent;
+    }
+    background-color: $primary-color;
+    &::before,
+    &::after {
+      background-color: $primary-color;
+    }
+  }
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+
+  @include mq("sp") {
+    height: 60px;
+  }
+}
+
+.header_logo {
+  width: 120px;
+}
+
+.header-nav {
+  margin-left: auto;
+
+  @include mq("sp") {
+    top: 60px;
+    background-color: $primary-color;
+    padding: 24px 0;
+  }
+}
+
+.header-nav-list {
+  @include mq("pc") {
+    display: flex;
+  }
+}
+
+.header-nav-item {
+  @include mq("pc") {
+    &:not(:first-of-type) {
+      margin-left: 46px;
+    }
+  }
+}
+
+.header-nav-item-link {
+  //高さやpaddingの指定をするためにdisplay:block
+  //aタグに高さを指定することでクリック領域を広げることができる
+  display: block;
+  text-decoration: none;
+  color: $font-color;
+  height: 70px;
+  line-height: 70px;
+  letter-spacing: 0.1em;
+
+  @include mq("sp") {
+    color: #fff;
+    font-size: 18px;
+    text-align: right;
+    padding: 0 15px;
+    height: 60px;
+    line-height: 60px;
+  }
+
+  //スマホでだとタップした後にスタイルが残ってしまう可能性があるため
+  //アニメーションはpcの時だけ表示させる。
+  @include mq("pc") {
+    transition: color 0.4s;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+/* 
+main
+==============================================================================*/
+
+.main {
+  padding-top: 70px;
+  @include mq("sp") {
+    padding-top: 60px;
+  }
+}
+
+.section {
+  margin-top: 160px;
+
+  @include mq("sp") {
+    margin-top: 96px;
+  }
+}
+
+.util-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: #333;
+  position: relative;
+  text-align: center;
+  padding-bottom: 16px;
+  //正しく余白を付けるために、予めbodyで設定してあった文字のline-heightを1にする
+  line-height: 1;
+
+  @include mq("sp") {
+    font-size: 30px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 1px;
+    background: $primary-color;
+  }
+}
+
+.util-link-btn {
+  //予期せぬ動作を防止するために、transitionを用いる際は、
+  //何の要素に適用させるのかを明示的に記述する。（color, background-color等）
+  font-size: 14px;
+  display: inline-block;
+  color: $primary-color;
+  padding: 10px 54px;
+  border: solid 1px $primary-color;
+  letter-spacing: 0.1em;
+  background: #fff;
+  transition: background-color 0.4s, color 0.4s;
+
+  //activeクラスが付与された際にボタンの色が変わる
+  &.-active {
+    color: #fff;
+    background: $primary-color;
+  }
+
+  //submitのクラスを含まないutil-link-btnクラスに対してhoverの処理を適応させる
+  @include mq("pc") {
+    &:not(.-submit) {
+      &:hover {
+        color: #fff;
+        background: $primary-color;
+      }
+    }
+  }
+}
+
+/* 
+top
+==============================================================================*/
+.top {
+  position: relative;
+}
+
+.top-picture {
+  @include mq("pc") {
+    padding-top: 55%;
+    //画像をtopの右側に寄せる
+    //画像サイズ（画像の横幅 / インナー幅 * 100）%
+    background: url(/img/top.png) top right / 82.5% no-repeat;
+  }
+
+  @include mq("sp") {
+    // padding-topの数値は、カンプ画像サイズ（414px / 345px） * 100
+    padding-top: 120%;
+    background: url(/img/SP/top_SP.png) center center / cover;
+  }
+}
+
+.top-message {
+  @include mq("pc") {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background: #fff;
+    padding: 82px 44px 90px 40px;
+  }
+}
+
+.top-message-title {
+  color: #333;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.top-message-text {
+  margin-top: 18px;
+}
+
+/* 
+Concept
+==============================================================================*/
+
+.concept-inner {
+  margin-top: 64px;
+
+  @include mq("sp") {
+    margin-top: 46px;
+  }
+
+  @include mq("pc") {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.concept-picture {
+  @include mq("pc") {
+    //値を3つ指定: flex-grow | flex-shrink | flex-basis
+    flex: 0 0 50%;
+  }
+}
+
+.concept-message {
+  @include mq("sp") {
+    margin-top: 35px;
+  }
+
+  @include mq("pc") {
+    flex: 0 1 50%;
+    //普通にmarginを指定するとタブレット表示のときに余白が有り余ってしまうので、
+    //(80px / 1200px * 100)%の値をmargin-leftに指定。
+    margin-left: 6.666%;
+  }
+}
+
+.concept-message-title {
+  color: #333;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.concept-message-text {
+  margin-top: 36px;
+
+  @include mq("sp") {
+    margin-top: 20px;
+  }
+}
+
+/* 
+Feature
+==============================================================================*/
+
+.feature {
+  @include mq("sp") {
+    max-width: 360px;
+  }
+}
+
+.feature-list {
+  margin-top: 64px;
+
+  @include mq("sp") {
+    margin-top: 46px;
+  }
+
+  @include mq("pc") {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.feature-item {
+  @include mq("pc") {
+    //カードの横幅を指定(340px / 1200px * 100)%
+    flex: 0 0 28.3333%;
+  }
+
+  &:not(:first-of-type) {
+    @include mq("sp") {
+      margin-top: 49px;
+    }
+  }
+}
+
+.feature-item-link {
+  display: block;
+  color: $font-color;
+  background: #fff;
+  box-shadow: 3px 3px 15px rgba(96, 96, 96, 0.16);
+
+  //feature-item-linkをマウスホバーした際、feature-item-picture直下のimgが
+  //1.05倍（105%）まで拡大する
+  @include mq("pc") {
+    &:hover {
+      .feature-item-picture > img {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+//拡大のアニメーションを設定。
+.feature-item-picture {
+  //feature-itemクラスの領域からはみ出た分は表示しない
+  overflow: hidden;
+  > img {
+    transition: transform 0.4s;
+  }
+}
+
+.feature-item-body {
+  text-align: center;
+  font-weight: 700;
+  padding: 26px 10px;
+}
+
+/* 
+about
+==============================================================================*/
+
+.about {
+  color: #fff;
+  position: relative;
+  @include mq("pc") {
+    background: url(/img/bg.png) center center / cover;
+  }
+
+  @include mq("sp") {
+    background: url(/img/SP/bg_SP.png) center center / cover;
+    padding: 176px 0 52px;
+  }
+
+  //画像を黒いフィルタで覆う
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.12);
+  }
+}
+
+.about-inner {
+  //文字をフィルタより前に出す
+  position: relative;
+  padding: 120px 40px;
+}
+
+.about-title {
+  font-size: 22px;
+  font-weight: 700;
+
+  @include mq("sp") {
+    font-size: 20px;
+  }
+}
+
+.about-text {
+  margin-top: 28px;
+
+  @include mq("sp") {
+    font-size: 14px;
+    margin-top: 22px;
+    line-height: (24px / 14px);
+  }
+}
+
+/* 
+Product
+==============================================================================*/
+
+.Products {
+  max-width: 940px;
+
+  @include mq("sp") {
+    max-width: 340px;
+    padding: 0 58px;
+  }
+}
+
+.Products-list {
+  margin-top: 64px;
+
+  @include mq("sp") {
+    margin-top: 48px;
+  }
+
+  @include mq("pc") {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.Products-item {
+  background: #fff;
+  @include mq("pc") {
+    flex: 0 0 27.6595%;
+  }
+
+  &:not(:first-of-type) {
+    @include mq("sp") {
+      margin-top: 40px;
+    }
+  }
+}
+
+.Products-item-link {
+  display: block;
+  color: $font-color;
+  font-size: 14px;
+
+  //Products-itemをマウスホバーした際、Products-item-link直下のimgが
+  //1.05倍（105%）まで拡大する
+  @include mq("pc") {
+    &:hover {
+      .Products-item-picture > img {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+//拡大のアニメーションを設定。
+.Products-item-picture {
+  //Products-itemクラスの領域からはみ出た分は表示しない
+  overflow: hidden;
+  > img {
+    transition: transform 0.4s;
+  }
+}
+
+.Products-item-body {
+  margin-top: 24px;
+}
+
+.Products-item-cost {
+  color: #989898;
+  margin-top: 12px;
+}
+
+.Products-footer {
+  text-align: center;
+  margin-top: 40px;
+
+  @include mq("sp") {
+    margin-top: 42px;
+  }
+}
+
+/* 
+news
+==============================================================================*/
+
+.news {
+  max-width: 1040px;
+
+  @include mq("sp") {
+    padding: 0 32px;
+  }
+}
+
+.news-list {
+  margin-top: 28px;
+
+  @include mq("sp") {
+    margin-top: 25px;
+  }
+}
+
+.news-item {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.news-item-link {
+  color: $font-color;
+  font-size: 14px;
+  // ボーダーと画像の余白
+  padding: 22px 0 22px;
+  display: block;
+
+  @include mq("pc") {
+    display: flex;
+    align-items: center;
+
+    //hoverさせると下記「☆」のtransformの設定が上書きされるので
+    //再度translate(-50%, -50%)を記述する。
+    //位置を指定してから大きさを指定すること。
+    &:hover {
+      .news-item-picture > img {
+        transform: translate(-50%, -50%) scale(1.05);
+      }
+    }
+  }
+}
+
+.news-item-header {
+  @include mq("pc") {
+    flex: 0 0 260px;
+  }
+}
+
+//画像サイズに関わらず一定の画角で画像を表示させる☆
+.news-item-picture {
+  padding-top: 61.5385%;
+  position: relative;
+  overflow: hidden;
+
+  > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transition: transform 0.4s;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.news-item-body {
+  @include mq("sp") {
+    margin-top: 21px;
+  }
+
+  @include mq("pc") {
+    flex: 0 1 100%;
+    margin-left: 40px;
+  }
+}
+
+.news-item-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 4px;
+
+  @include mq("sp") {
+    font-size: 16px;
+  }
+}
+
+.news-item-text {
+  color: #888888;
+  margin-top: 16px;
+  line-height: (24px / 14px);
+}
+
+.news-footer {
+  text-align: center;
+  margin-top: 48px;
+}
+
+/* 
+Concept2
+==============================================================================*/
+
+.concept2-inner {
+  @include mq("pc") {
+    display: flex;
+    align-items: center;
+    // flex要素を左右反転させる
+    flex-direction: row-reverse;
+  }
+}
+
+.concept2-picture {
+  @include mq("pc") {
+    //値を3つ指定: flex-grow | flex-shrink | flex-basis
+    flex: 0 0 50%;
+  }
+}
+
+.concept2-message {
+  @include mq("sp") {
+    margin-top: 34px;
+  }
+
+  @include mq("pc") {
+    flex: 0 1 50%;
+    //普通にmarginを指定するとタブレット表示のときに余白が有り余ってしまうので、
+    //(80px / 1200px * 100)%の値をmargin-leftに指定。
+    margin-right: 6.666%;
+  }
+}
+
+.concept2-message-title {
+  color: #333;
+  font-size: 28px;
+  font-weight: 700;
+
+  @include mq("sp") {
+    font-size: 20px;
+  }
+}
+
+.concept2-message-text {
+  margin-top: 30px;
+
+  @include mq("sp") {
+    font-size: 14px;
+    line-height: (24px / 14px);
+  }
+}
+
+/* 
+contact
+==============================================================================*/
+
+.contact {
+  background: url(/img/contact.png) center center / cover;
+  margin-top: 255px;
+  // paddingの左右はインナー幅に合わせる
+  padding: 74px 40px 86px;
+
+  @include mq("sp") {
+    margin-top: 92px;
+    padding: 54px 28px;
+  }
+
+  .util-title {
+    color: $primary-color;
+  }
+
+  // 3つの要素に共通しているCSS
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    border: 0;
+    font-size: 16px;
+    padding: 0.2em 0.5em;
+    box-shadow: 5px 6px 15px rgba(96, 96, 96, 0.16);
+    border-radius: 2px;
+  }
+
+  // textとemailのinput要素に対してのCSS
+  input[type="text"],
+  input[type="email"] {
+    height: 40px;
+  }
+
+  // 最低でも横幅122pxとし、縦方向に要素の大きさを変更できる
+  textarea {
+    min-height: 122px;
+    resize: vertical;
+  }
+}
+
+.contact-form {
+  margin-top: 56px;
+
+  @include mq("sp") {
+    margin-top: 26px;
+  }
+}
+
+.contact-text {
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+.contact-text-inline {
+  font-size: 16px;
+  color: #e7728e;
+}
+
+.contact-list {
+  max-width: 510px;
+  margin: 18px auto 0;
+}
+
+.contact-footer {
+  text-align: center;
+  margin-top: 20px;
+
+  @include mq("sp") {
+    margin-top: 14px;
+  }
+}
+
+.contact-footer-submit {
+  margin-top: 46px;
+
+  @include mq("sp") {
+    margin-top: 24px;
+  }
+}
+
+.contact-item {
+  @include mq("pc") {
+    display: flex;
+  }
+
+  &:not(:first-of-type) {
+    margin-top: 32px;
+  }
+}
+
+.contact-privacy-link {
+  color: $primary-color;
+  text-decoration: underline;
+}
+
+.contact-item-title-inline {
+  font-size: 12px;
+  color: #e7728e;
+  vertical-align: super;
+  // contact-item-titleにline-hight: 4pxが適応されているので、1に初期化
+  line-height: 1;
+
+  @include mq("sp") {
+    font-size: 10px;
+  }
+}
+
+.contact-item-input {
+  @include mq("sp") {
+    margin-top: 3px;
+  }
+
+  @include mq("pc") {
+    flex: 0 0 320px;
+    margin-left: 18px;
+  }
+}
+
+.contact-item-title {
+  background-color: rgba(2, 92, 9, 0.7);
+  color: #fff;
+  font-size: 18px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  padding-left: 10px;
+  position: relative;
+
+  @include mq("sp") {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 32px;
+    height: 32px;
+    padding: 0 16px;
+  }
+
+  @include mq("pc") {
+    flex: 0 1 100%;
+    &::after {
+      position: absolute;
+      content: "";
+      display: block;
+      right: -8px;
+      top: 0;
+      border-style: solid;
+      border-width: 20px 0 20px 8px;
+      border-color: transparent transparent transparent rgba(2, 92, 9, 0.7);
+    }
+  }
+}
+
+.contact-radio-wrap {
+  display: inline-flex;
+  border: solid 1px #fff;
+  border-radius: 1px;
+  box-shadow: 5px 6px 15px rgba(96, 96, 96, 0.16);
+}
+
+.contact-radio {
+  position: relative;
+}
+
+.contact-radio-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  
+  // checkedの次にある.contact-radio-partに対してスタイルを当てる
+  &:checked + .contact-radio-part {
+    background-color: $primary-color;
+    color: #fff;
+    border-radius: 1px;
+  }
+  &:focus + .contact-radio-part {
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+}
+
+.contact-radio-part {
+  display: block;
+  background: #fff;
+  color: $primary-color;
+  height: 38px;
+  line-height: 38px;
+  width: 80px;
+  text-align: center;
+  transition: background-color .4s, color .4s;
+}
+
+.contact-privacy {
+  position: relative;
+  height: 22px;
+  width: 22px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.contact-privacy-part {
+  display: inline-block;
+  height: 22px;
+  width: 22px;
+  border: solid 1px $primary-color;
+  background: #fff;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transition: all .2s;
+}
+
+.contact-privacy-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+
+  &:checked + .contact-privacy-part {
+    width: 10px;
+    border-top: 0;
+    border-left: 0;
+    background-color: transparent;
+    transform: rotate(45deg);
+    top: -5px;
+    left: 5px;
+  }
+
+  &:focus + .contact-privacy-part {
+    outline: -webkit-focus-ring-color auto 5px;
+  }
+  &:checked:focus + .contact-privacy-part {
+    outline: none;
+  }
+}
+
+.contact-message {
+  margin-top: 90px;
+  text-align: center;
+  display: none;
+
+  &.-error {
+    color: #f00;
+  }
+}
+
+
+/* 
+footer
+==============================================================================*/
+
+.footer {
+  background: #f7f7f7;
+  padding: 42px 40px 12px;
+
+  @include mq("sp") {
+    padding: 36px 0 14px;
+  }
+}
+
+.footer-logo {
+  width: 120px;
+  margin: 0 auto;
+}
+
+.footer-nav-list {
+  margin-top: 8px;
+
+  @include mq("pc") {
+    display: flex;
+    //要素を中央寄せ
+    justify-content: center;
+  }
+
+  @include mq("sp") {
+    text-align: center;
+    margin-top: 16px;
+  }
+}
+
+.footer-nav-item {
+  &:not(:first-of-type) {
+    @include mq("pc") {
+      margin-left: 30px;
+    }
+  }
+}
+
+.footer-nav-item-link {
+  font-size: 12px;
+  color: $font-color;
+  display: block;
+  //１文字分のpaddingを上下に設けてクリック領域を広げる
+  padding: 1em 0;
+
+  @include mq("sp") {
+    padding: 0.3em 0;
+  }
+
+  @include mq('pc') {
+    &:hover {
+      transition: opacity .4s;
+      opacity: .7;
+    }
+  }
+}
+
+.footer-sns-list {
+  text-align: center;
+  // margin: 36px 0 24px;
+
+  @include mq("sp") {
+    margin-top: 14px;
+  }
+}
+
+.footer-sns-item {
+  //flexでもよい
+  display: inline-block;
+  &:not(:first-of-type) {
+    margin-left: 10px;
+  }
+}
+
+.footer-sns-item-link {
+  color: $primary-color;
+  font-size: 24px;
+  display: block;
+  padding: 0.1em 0.5em;
+
+  @include mq('pc') {
+    &:hover {
+      transition: opacity .4s;
+      opacity: .7;
+    }
+  }
+}
+
+.footer-copyright {
+  color: #888;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 10px;
+
+  @include mq("sp") {
+    margin-top: 5px;
+  }
+}

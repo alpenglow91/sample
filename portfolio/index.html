@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--headで必要なcssやjs、ライブラリのリンクを設定する-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenBack 国内初、アウトドアギアのセレクトショップ「GreenBack」</title>
+  <meta name="description" content="サイトの概要">
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/vnd.microsoft.icon">
+  
+  <!-- reset css -->
+  <link rel="stylesheet" href="/css/reset.css">
+
+  <!-- fontAwesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+
+  <!-- drawer.css （スマホ表示のときのみ有効）-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/css/drawer.min.css"
+  media="screen and (max-width: 767px)">
+
+  <!-- jquery & iScroll -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.min.js"></script>
+  <!-- drawer.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/js/drawer.min.js"></script>
+
+  <!-- wow -->
+  <link rel="stylesheet" href="/css/animate.css">
+  <script src="/Js/wow.min.js"></script>
+
+  <!-- original css/js -->
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/Js/script.js"></script>
+</head>
+
+<body class="drawer drawer--right">
+  <header id="js-header" class="header">
+    <div class="header-inner inner">
+      <h1 class="header_logo"><a href="/"><img src="/img/logo.png" alt="GreenBack"></a></h1>
+      <button type="button" class="drawer-toggle drawer-hamburger">
+        <span class="sr-only">toggle navigation</span>
+        <span class="drawer-hamburger-icon"></span>
+      </button>
+      <nav class="drawer-nav header-nav">
+        <ul class="drawer-menu header-nav-list">
+          <li class="header-nav-item">
+            <a class="header-nav-item-link" href="#Concept">Concept</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-item-link" href="#Feature">Feature</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-item-link" href="#Product">Product</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-item-link" href="#News">News</a>
+          </li>
+          <li class="header-nav-item">
+            <a class="header-nav-item-link" href="#Contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- /.header -->
+
+  <main class="main">
+    <div class="top inner wow fadeIn">
+      <div class="top-picture"></div>
+      <div class="top-message">
+        <p class="top-message-title">品質と<br class="is-sp">デザインの両立</p>
+        <p class="top-message-text">あらゆる環境でも適応できる形状が <br>実用性と信頼性に繋がります。</p>
+      </div>
+    </div>
+    <!-- /.top -->
+
+    <section id="Concept" class="concept inner section">
+      <h2 class="util-title wow fadeInUp">Concept</h2>
+      <!-- innerの中身はフレックスで横並び表示 -->
+      <div class="concept-inner">
+        <div class="concept-picture wow fadeInUp"><img src="/img/concept-1.png" alt=""></div>
+        <div class="concept-message wow fadeInUp">
+          <p class="concept-message-title">見るだけでも楽しい<br>心を躍らせる時間と商品を提供します。</p>
+          <p class="concept-message-text">ここにある商品すべては、経営者自らが直接手に取り選んだものです。また、私達社員全員がその使い方を理解しており、自信を持ってお客様におすすめできる商品のみを取り扱っていおります。</p>
+        </div>
+      </div>
+    </section>
+    <!-- /.concept -->
+
+    <section id="Feature" class="feature inner section">
+      <h2 class="util-title wow fadeInUp">Feature</h2>
+      <ul class="feature-list">
+        <li class="feature-item wow fadeInUp">
+          <a href="#" class="feature-item-link">
+            <div class="feature-item-picture"><img src="/img/feature-1.png" alt=""></div>
+            <div class="feature-item-body">
+              <p class="feature-item-title">海外のトレンドを<br>どこよりも早く</p>
+            </div>
+          </a>
+        </li>
+        <li class="feature-item wow fadeInUp">
+          <a href="#" class="feature-item-link">
+            <div class="feature-item-picture"><img src="/img/feature-2.png" alt=""></div>
+            <div class="feature-item-body">
+              <p class="feature-item-title">大人から子供まで<br>楽しめるデザイン</p>
+            </div>
+          </a>
+        </li>
+        <li class="feature-item wow fadeInUp">
+          <a href="#" class="feature-item-link">
+            <div class="feature-item-picture"><img src="/img/feature-3.png" alt=""></div>
+            <div class="feature-item-body">
+              <p class="feature-item-title">変化し続ける<br>社会と向き合う</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <!-- /.feature -->
+
+    <div class="about section">
+        <div class="about-inner inner wow fadeInUp">
+          <p class="about-title">好奇心の赴くままに<br>もっとアウトドアを楽しもう</p>
+          <p class="about-text">どこに行こう？何をして遊ぼう？何を食べよう？<br>計画を立てるときは、とてもわくわくしますよね。<br class="is-pc">
+            私達はそのアイディアを更に膨らませるためのお手伝いをしたいです。<br>
+          </p>
+      </div>
+    </div>
+    <!-- /.about -->
+
+    <section id="Product" class="Products inner section">
+      <h2 class="util-title wow fadeInUp">Products</h2>
+      <ul class="Products-list">
+        <li class="Products-item wow fadeInUp">
+          <a href="#" class="Products-item-link">
+            <div class="Products-item-picture"><img src="/img/Product-1.png" alt=""></div>
+            <div class="Products-item-body">
+              <p class="Products-item-title">【再生プラスチック100%使用】GreenBackオリジナルボトル</p>
+              <p class="Products-item-cost">￥1,580</p>
+            </div>
+          </a>
+        </li>
+        <li class="Products-item wow fadeInUp">
+          <a href="#" class="Products-item-link">
+            <div class="Products-item-picture"><img src="/img/Product-2.png" alt=""></div>
+            <div class="Products-item-body">
+              <p class="Products-item-title">保温タンブラー</p>
+              <p class="Products-item-cost">￥3,980</p>
+            </div>
+          </a>
+        </li>
+        <li class="Products-item wow fadeInUp">
+          <a href="#" class="Products-item-link">
+            <div class="Products-item-picture"><img src="/img/Product-3.png" alt=""></div>
+            <div class="Products-item-body">
+              <p class="Products-item-title">ノンスティックアルミニウムフライパン</p>
+              <p class="Products-item-cost">￥5,800</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <div class="Products-footer">
+        <a href="#" class="util-link-btn wow fadeInUp">MORE</a>
+      </div>
+    </section>
+    <!-- /.product -->
+
+    <section id="News" class="news inner section">
+      <h2 class="util-title wow fadeInUp">News</h2>
+      <div class="news-list">
+        <article class="news-item wow fadeInUp">
+          <a href="" class="news-item-link">
+            <div class="news-item-header">
+              <div class="news-item-picture"><img src="/img/news-1.png" alt=""></div>
+            </div>
+            <div class="news-item-body">
+              <p class="news-item-date"><time datetime="2020-02-04">2022年2月14日</time></p>
+              <p class="news-item-title">マシュマロ焼き！次回イベント開催は3/19(土)予定です</p>
+              <p class="news-item-text">第1回マシュマロ焼きオフ会\( ˆoˆ )/お集まり頂いた皆様に感謝です！…</p>
+            </div>
+          </a>
+        </article>
+        <article class="news-item wow fadeInUp">
+          <a href="" class="news-item-link">
+            <div class="news-item-header">
+              <div class="news-item-picture"><img src="/img/news-2.png" alt=""></div>
+            </div>
+            <div class="news-item-body">
+              <p class="news-item-date"><time datetime="2020-01-20">2022年1月21日</time></p>
+              <p class="news-item-title">外でもオシャレなお菓子作りができちゃうんです！</p>
+              <p class="news-item-text">こんにちは！今回は「アウトドアでお菓子作りはできるのか？」という疑問に私自身の体験を基に…</p>
+            </div>
+          </a>
+        </article>
+        <article class="news-item wow fadeInUp">
+          <a href="" class="news-item-link">
+            <div class="news-item-header">
+              <div class="news-item-picture"><img src="/img/news-3.png" alt=""></div>
+            </div>
+            <div class="news-item-body">
+              <p class="news-item-date"><time datetime="2020-11-23">2021年10月13日</time></p>
+              <p class="news-item-title">【ご報告】一部商品の今後の入荷予定について</p>
+              <p class="news-item-text">こんにちは！経営企画部〇〇担当の安倍です！この度は…</p>
+            </div>
+          </a>
+        </article>
+      </div>
+      <div class="news-footer">
+        <a href="#" class="util-link-btn wow fadeInUp">MORE</a>
+      </div>
+    </section>
+    <!-- /.news -->
+
+    <section class="concept-2 inner section">
+      <div class="concept2-inner">
+        <div class="concept2-picture wow fadeInUp"><img src="/img/concept-2.png" alt=""></div>
+        <div class="concept2-message wow fadeInUp">
+          <p class="concept2-message-title">私達は<br>人と自然の橋渡し役です。</p>
+          <p class="concept2-message-text">
+            良いものを長く使うことが最大の環境保護だと考えております。そのため、弊社で取り扱う商品の価格は必ずしもお手頃というわけではありません。しかし、その価格には意味があります。是非一度商品を手に取っていただき、その意味をご自身で確かめてみてください。</p>
+        </div>
+      </div>
+    </section>
+    <!-- /.concept_2 -->
+
+    <!-- Googleformのvalue値とこちら側のvalue値は完全一致させる必要あり -->
+    <section id="Contact" class="contact inner">
+      <h2 class="util-title wow fadeInUp">Contact</h2>
+      <form id="js-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSccCX2DmExFDrl7u4-qfh_54nsVGjQXcogfu24_EhD5rT2o3g/formResponse"
+      class="contact-form wow fadeInUp" method="POST">
+        <p class="contact-text"><span class="contact-text-inline">＊</span>は入力必須項目です</p>
+        <dl class="contact-list">
+          <div class="contact-item">
+            <dt class="contact-item-title">お名前
+              <span class="contact-item-title-inline">＊</span>
+            </dt>
+            <dd class="contact-item-input">
+              <input type="text" name="entry.1010391845" required>
+            </dd>
+          </div>
+          <div class="contact-item">
+            <dt class="contact-item-title">メールアドレス
+              <span class="contact-item-title-inline">＊</span>
+            </dt>
+            <dd class="contact-item-input">
+              <input type="email" name="emailAddress">
+            </dd>
+          </div>
+          <div class="contact-item">
+            <dt class="contact-item-title">法人/個人の選択
+              <span class="contact-item-title-inline">＊</span>
+            </dt>
+            <dd class="contact-item-input">
+              <!-- 全体をクリック領域にするためラジオボタンをdivタグで囲う -->
+              <div class="contact-radio-wrap">
+                <label class="contact-radio">
+                  <input type="radio" name="entry.27999944" class="contact-radio-input" value="法人" required checked>
+                  <span class="contact-radio-part">法人</span>
+                </label>
+                <label class="contact-radio">
+                  <input type="radio" name="entry.27999944" class="contact-radio-input" value="個人" required>
+                  <span class="contact-radio-part">個人</span>
+                </label>
+              </div>
+            </dd>
+          </div>
+          <div class="contact-item">
+            <dt class="contact-item-title">
+              お問い合わせ内容<span class="contact-item-title-inline">＊</span>
+            </dt>
+            <dd class="contact-item-input">
+              <textarea name="entry.1499164473" required></textarea>
+            </dd>
+          </div>
+        </dl>
+        <div class="contact-footer">
+          <p class="contact-footer-text">
+            <label class="contact-privacy">
+              <input type="checkbox" name="entry.1553035331" class="contact-privacy-input"
+              value="プライバシーポリシーの同意" required>
+              <span class="contact-privacy-part"></span>
+            </label>
+            <a href="#" class="contact-privacy-link" target="_blank">プライバシーポリシー</a>に同意します。
+          </p>
+          <div class="contact-footer-submit">
+            <button id="js-submit" class="util-link-btn -submit" type="submit" disabled>送信</button>
+          </div>
+        </div>
+      </form>
+      <div id="js-success" class="contact-message">
+        <p>送信完了いたしました。ありがとうございました。</p>
+      </div>
+      <div id="js-failed" class="contact-message -error">
+        <p>送信に失敗いたしました。ページを更新して再度送信してください。</p>
+      </div>
+    </section>
+    <!-- /.contact -->
+  </main>
+  <!-- /.main -->
+
+  <footer class="footer">
+    <div class="footer-logo"><img src="/img/logo.png" alt=""></div>
+    <ul class="footer-nav-list">
+      <li class="footer-nav-item">
+        <a href="#" class="footer-nav-item-link">プライバシーポリシー</a>
+      </li>
+      <li class="footer-nav-item">
+        <a href="#" class="footer-nav-item-link">特定商取引法に基づく表記</a>
+      </li>
+    </ul>
+    <ul class="footer-sns-list">
+      <li class="footer-sns-item">
+        <a href="#" class="footer-sns-item-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      </li>
+      <li class="footer-sns-item">
+        <a href="#" class="footer-sns-item-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </li>
+      <li class="footer-sns-item">
+        <a href="#" class="footer-sns-item-link" aria-label="Line"><i class="fab fa-line"></i></a>
+      </li>
+    </ul>
+    <p class="footer-copyright"><small lang="en">© 2022 GreenBack All rights reserved</small></p>
+  </footer>
+  <!-- /.footer -->
+</body>
+</html>
+<!-- editor.emmet.action.wrapWithAbbreviationのショートカット「option + shift + i」 -->
